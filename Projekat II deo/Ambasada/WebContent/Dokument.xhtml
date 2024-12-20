@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns = "http://www.w3.org/1999/xhtml"
+ 	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+   <h:body>
+      <hr />
+      <h3>Dokumenta</h3>
+      <h3>Home</h3>
+        <div>
+            <h:button value="Home" outcome="Home.xhtml" />
+        </div>
+      <h:form>
+         	<h4>Dodavanje</h4>
+      		<h:outputLabel value="Broj pasosa:"/>
+		      <div>
+		      	<h:inputText value="#{DokumentController.brojpasosa}"></h:inputText>
+		      </div>
+		      <div>
+		      	<h:outputLabel value="Opis:"/>
+		      </div>
+		      <div>
+		      	<h:inputText value="#{DokumentController.opis}"></h:inputText>
+		      </div>
+
+      		<h:commandButton 
+      			value="DodajDokument" 
+      			action="#{DokumentController.saveDokument(
+      						DokumentController.brojpasosa,
+      						DokumentController.opis)}"
+      		>
+      		</h:commandButton>
+                
+    </h:form>
+
+    <h:form>
+          <h4>Brisanje</h4>
+	      	<h:outputLabel value="Id za brisanje dokumenta:"/>
+	      <div>
+	      	<h:inputText value="#{DokumentController.bid}"></h:inputText>
+	      </div>
+     
+ 		  <h:commandButton 
+ 		  		value="BrisiDokument" 
+ 		  		action="#{DokumentController.removeDokument(DokumentController.bid)}">
+ 		  </h:commandButton>            
+    </h:form>
+         
+    <h:form>
+     	<h4>Azuriranje</h4>
+      	<h:outputLabel value="Id za azuriranje:"/>
+      	<div>
+      		<h:inputText value="#{DokumentController.aid}"></h:inputText>
+      	</div>   
+      	<h:outputLabel value="Novi broj pasosa:"/>
+      	<div>
+      		<h:inputText value="#{DokumentController.abrojpasosa}"></h:inputText>
+      	</div>
+      	<h:outputLabel value="Novi opis: "/>
+      	<div>
+      		<h:inputText value="#{DokumentController.aopis}"></h:inputText>
+      	</div>   
+      
+ 		<h:commandButton 
+ 			value="AzurirajDokument" 
+ 			action="#{DokumentController.updateDokument(
+ 						DokumentController.aid,
+ 						DokumentController.abrojpasosa,
+ 						DokumentController.aopis)}">
+ 		</h:commandButton>
+                
+     </h:form>        
+     
+     <h3>Dokumenti:</h3>
+     <ul>
+     	<ui:repeat value="#{DokumentController.listadokumenata()}" var="d">
+     		<li>
+     			<h:outputText 
+     				value='
+     					Id: #{d.iddokumenta}, 
+     					Broj pasosa: #{d.brojpasosa}, 
+     					Opis: #{d.opis}' 
+     			/>
+     			
+     		</li>
+     	</ui:repeat>
+     </ul> 
+    	
+   </h:body>
+</html>

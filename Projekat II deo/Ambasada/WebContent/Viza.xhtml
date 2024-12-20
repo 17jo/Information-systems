@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns = "http://www.w3.org/1999/xhtml"
+ 	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+   <h:body>
+      <hr />
+      <h3>Vize</h3>
+      <h3>Home</h3>
+        <div>
+            <h:button value="Home" outcome="Home.xhtml" />
+        </div>
+      <h:form>
+         	<h4>Dodavanje</h4>
+      		<h:outputLabel value="Broj pasosa:"/>
+		      <div>
+		      	<h:inputText value="#{VizaController.brojpasosa}"></h:inputText>
+		      </div>
+		      <div>
+		      	<h:outputLabel value="Trajanje:"/>
+		      </div>
+		      <div>
+		      	<h:inputText value="#{VizaController.trajanje}"></h:inputText>
+		      </div>
+		      <div>
+		      	<h:outputLabel value="Tip: "/>
+		      </div>
+		      <div>
+		      	<h:inputText value="#{VizaController.tip}"></h:inputText>
+		      </div>
+      		  <div>
+		      	<h:outputLabel value="ID zahteva: "/>
+		      </div>
+		      <div>
+		      	<h:inputText value="#{VizaController.idzahteva}"></h:inputText>
+		      </div>
+      
+      		<h:commandButton 
+      			value="DodajVizu" 
+      			action="#{VizaController.saveViza(
+      					VizaController.brojpasosa,
+      					VizaController.trajanje,
+      					VizaController.tip,
+      					VizaController.idzahteva)}"
+      		>
+      		</h:commandButton>
+                
+    </h:form>
+
+    <h:form>
+          <h4>Brisanje</h4>
+	      	<h:outputLabel value="Id za brisanje vize:"/>
+	      <div>
+	      	<h:inputText value="#{VizaController.bid}"></h:inputText>
+	      </div>
+     
+ 		  <h:commandButton 
+ 		  		value="BrisiVizu" 
+ 		  		action="#{VizaController.removeViza(VizaController.bid)}">
+ 		  </h:commandButton>            
+    </h:form>
+         
+    <h:form>
+     	<h4>Azuriranje</h4>
+      	<h:outputLabel value="Id za azuriranje:"/>
+      	<div>
+      		<h:inputText value="#{VizaController.aid}"></h:inputText>
+      	</div>   
+      	<h:outputLabel value="Novi broj pasosa:"/>
+      	<div>
+      		<h:inputText value="#{VizaController.abrojpasosa}"></h:inputText>
+      	</div>>  
+      	<h:outputLabel value="Novo trajanje:"/>
+      	<div>
+      		<h:inputText value="#{VizaController.atrajanje}"></h:inputText>
+      	</div>  
+      	<h:outputLabel value="Novi tip: "/>
+      	<div>
+      		<h:inputText value="#{VizaController.atip}"></h:inputText>
+      	</div>  
+      	<h:outputLabel value="Novi ID zahteva: "/>
+      	<div>
+      		<h:inputText value="#{VizaController.idzahteva}"></h:inputText>
+      	</div>  
+      
+ 		<h:commandButton 
+ 			value="AzurirajVizu" 
+ 			action="#{VizaController.updateViza(
+ 						VizaController.aid,
+ 						VizaController.abrojpasosa,
+ 						VizaController.atrajanje,
+ 						VizaController.atip,
+ 						VizaController.idzahteva)}">
+ 		</h:commandButton>
+                
+     </h:form>        
+     
+     <h3>Vize:</h3>
+     <ul>
+     	<ui:repeat value="#{VizaController.listaviza()}" var="d">
+     		<li>
+     			<h:outputText 
+     				value='
+     					Id: #{d.idvize}, 
+     					Broj pasosa: #{d.brojpasosa}, 
+     					Namena: #{d.trajanje}, 
+     					Trajanje: #{d.tip},
+     					Status: #{d.idzahteva}' 
+     			/>
+     			
+     		</li>
+     	</ui:repeat>
+     </ul> 
+    	
+   </h:body>
+</html>
